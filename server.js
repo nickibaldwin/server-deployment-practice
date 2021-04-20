@@ -5,7 +5,7 @@ const app = express();
 
 const notFoundHandler = require('./handlers/404.js');
 const errorHandler = require('./handlers/500.js');
-const stamper = require('middleware/stamper.js');
+const stamper = require('./middleware/stamper.js');
 
 app.get('/', stamper, (req, res) => {
     res.status(200).send('Hello World')

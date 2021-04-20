@@ -1,8 +1,6 @@
 'use strict';
 
-const { it, expect } = require('@jest/globals');
 const supertest = require('supertest');
-const { describe } = require('yargs');
 const server = require('../server.js');
 const request = supertest(server.app);
 
@@ -13,17 +11,18 @@ describe('API Server', () => {
         expect(response.status).toEqual(404);
     })
 
-    it('handles error', async() => {
+    it('handles errors', async() => {
         const response = await request.get('/bad');
         expect(response.status).toEqual(500);
         expect(response.body.route).toEqual('/bad');
     })
 
-    it('/works', async() => {
+    it('/ works', async() => {
         const response = await request.get('/');
         expect(response.status).toEqual(200);
         expect(response.text).toEqual('Hello World');
     })
+
     it('/data works', async() => {
         const response = await request.get('/data');
         expect(response.status).toEqual(200);
